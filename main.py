@@ -33,6 +33,22 @@ def cadastrar_projeto():
     projetos.append(projeto)
     print("Projeto cadastrado com sucesso!")
 
+def listar_projetos():
+    print("\n=================================")
+    print("       LISTAR PROJETOS")
+    print("=================================")
+
+    if not  projetos:
+        print("Nenhum projeto cadastrado!")
+        return
+    for projeto in projetos:
+        print(f"Código:{projeto['codigo']}")
+        print(f"Nome:{projeto['nome']}")
+        print(f"Cliente:{projeto['cliente']}")
+        print(f"Status:{projeto['status']}")
+        print(f"Data:{projeto['data']}")
+        print("-------------------------------------")
+
 def main():
     print("Sistema iniciado!")
     while True:
@@ -41,6 +57,10 @@ def main():
 
         if opcao == "1":
             cadastrar_projeto()
+
+        elif opcao == "2":
+            listar_projetos()
+
         elif opcao == "0":
             print("Saindo do sistema!")
             break
