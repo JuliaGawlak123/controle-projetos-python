@@ -18,7 +18,13 @@ def cadastrar_projeto():
     print("===================================")
 
     codigo = input("Digite o codigo do projeto: ")
+    if not codigo:
+        print("O código do projeto é obrigatorio!")
+        return
     nome = input("Digite o nome do projeto: ")
+    if not nome:
+        print("O nome do projeto é obrigatorio!")
+        return
     cliente = input("Digite o cliente do projeto: ")
     status = input("Digite o status do projeto: ")
     data = input("Digite o data do projeto: ")
