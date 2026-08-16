@@ -48,6 +48,22 @@ def listar_projetos():
         print(f"Status:{projeto['status']}")
         print(f"Data:{projeto['data']}")
         print("-------------------------------------")
+def buscar_projeto():
+    print("\n==================================")
+    print("     BUSCAR PROJETO")
+    print("====================================")
+
+    codigo = input("Digite o codigo do projeto: ")
+
+    for projeto in projetos:
+            print("Projeto encontrado!")
+            print(f"Código:{projeto['codigo']}")
+            print(f"Nome:{projeto['nome']}")
+            print(f"Cliente:{projeto['cliente']}")
+            print(f"Status:{projeto['status']}")
+            print(f"Data:{projeto['data']}")
+            return
+    print("/nProjeto não encontrado.")
 
 def main():
     print("Sistema iniciado!")
@@ -60,6 +76,9 @@ def main():
 
         elif opcao == "2":
             listar_projetos()
+
+        elif opcao == "3":
+            buscar_projeto()
 
         elif opcao == "0":
             print("Saindo do sistema!")
