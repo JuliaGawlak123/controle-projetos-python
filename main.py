@@ -65,6 +65,24 @@ def buscar_projeto():
             return
     print("/nProjeto não encontrado.")
 
+def alterar_status():
+    print("\n==================================")
+    print("     ALTERAR STATUS")
+    print("=================================")
+
+    codigo = input("Digite o codigo do projeto: ")
+
+    for projeto in projetos:
+        print(f"Projeto:{projeto['nome']}")
+        print(f"Status atual:{projeto['status']}")
+
+        novo_status = input("Digite o novo status atual: ")
+        projeto['status'] = novo_status
+
+        print("\nProjeto alterado com sucesso!")
+        return
+    print("\nProjeto não encontrado.")
+
 def main():
     print("Sistema iniciado!")
     while True:
@@ -79,6 +97,9 @@ def main():
 
         elif opcao == "3":
             buscar_projeto()
+
+        elif opcao == "4":
+            alterar_status()
 
         elif opcao == "0":
             print("Saindo do sistema!")
