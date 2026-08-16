@@ -1,3 +1,5 @@
+projetos = []
+
 def exibir_menu():
     print("\n===================================")
     print("       CONTROLE DE PROJETOS")
@@ -10,9 +12,40 @@ def exibir_menu():
     print("0 - Sair")
     print("===================================")
 
+def cadastrar_projeto():
+    print("\n===================================")
+    print("        CADASTRAR PROJETO")
+    print("===================================")
+
+    codigo = input("Digite o codigo do projeto: ")
+    nome = input("Digite o nome do projeto: ")
+    cliente = input("Digite o cliente do projeto: ")
+    status = input("Digite o status do projeto: ")
+    data = input("Digite o data do projeto: ")
+
+    projeto = {
+        "codigo": codigo,
+        "nome": nome,
+        "cliente": cliente,
+        "status": status,
+        "data": data
+    }
+    projetos.append(projeto)
+    print("Projeto cadastrado com sucesso!")
+
 def main():
     print("Sistema iniciado!")
-    exibir_menu()
+    while True:
+        exibir_menu()
+        opcao = input("Escolha uma opção: ")
+
+        if opcao == "1":
+            cadastrar_projeto()
+        elif opcao == "0":
+            print("Saindo do sistema!")
+            break
+        else:
+            print("Opção invalida!")
 
 if __name__ == "__main__":
     main()
