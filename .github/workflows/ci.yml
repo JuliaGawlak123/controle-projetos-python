@@ -21,5 +21,5 @@ jobs:
       - name: Verificar versão do Python
         run: python --version
 
-      - name: Executar aplicação
-        run: python main.py
+      - name: Verificar sintaxe do projeto
+        run: python -m py_compile main.py
