@@ -18,7 +18,13 @@ def cadastrar_projeto():
     print("===================================")
 
     codigo = input("Digite o codigo do projeto: ")
+    if not codigo:
+        print("O código do projeto é obrigatorio!")
+        return
     nome = input("Digite o nome do projeto: ")
+    if not nome:
+        print("O nome do projeto é obrigatorio!")
+        return
     cliente = input("Digite o cliente do projeto: ")
     status = input("Digite o status do projeto: ")
     data = input("Digite o data do projeto: ")
@@ -83,6 +89,20 @@ def alterar_status():
         return
     print("\nProjeto não encontrado.")
 
+def remover_projeto():
+    print("\n==================================")
+    print("     REMOVER PROJETO")
+    print("=================================")
+
+    codigo = input("Digite o codigo do projeto: ")
+
+    for projeto in projetos:
+        projetos.remove(projeto)
+        print("Projeto removido com sucesso!")
+        return
+    print("\nProjeto não encontrado.")
+
+
 def main():
     print("Sistema iniciado!")
     while True:
@@ -100,6 +120,9 @@ def main():
 
         elif opcao == "4":
             alterar_status()
+
+        elif opcao == "5":
+            remover_projeto()
 
         elif opcao == "0":
             print("Saindo do sistema!")
