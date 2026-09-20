@@ -6,10 +6,12 @@ on:
       - main
 
 jobs:
+
   test:
     runs-on: ubuntu-latest
 
     steps:
+
       - name: Baixar código
         uses: actions/checkout@v4
 
@@ -22,4 +24,27 @@ jobs:
         run: python --version
 
       - name: Verificar sintaxe do projeto
-        run: python -m py_compile main.py
+        run: python -m py_compile src/main.py
+
+
+  testes:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Baixar código
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Instalar dependências
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Test with pytest
+        run: |
+          pytest test/test.py --junitxml=test-results.xml --cov=src --cov-report=xml --cov-report=html
