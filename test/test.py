@@ -1,8 +1,26 @@
 from src.main import *
 from unittest.mock import patch
+import pytest
 
 
-def test_exibir_menu(capsys):
+@pytest.fixture
+def projeto_teste():
+
+    projeto = {
+        "codigo": "001",
+        "nome": "Projeto Teste",
+        "cliente": "Cliente Teste",
+        "status": "Em Cotação",
+        "data": "20/09/2026"
+    }
+
+    yield projeto
+
+    projetos.clear()
+
+
+@pytest.mark.asyncio
+async def test_exibir_menu(capsys):
 
     exibir_menu()
 
@@ -16,7 +34,8 @@ def test_exibir_menu(capsys):
     assert "0 - Sair" in captured.out
 
 
-def test_cadastrar_projeto():
+@pytest.mark.asyncio
+async def test_cadastrar_projeto():
 
     projetos.clear()
 
@@ -28,7 +47,7 @@ def test_cadastrar_projeto():
         "20/09/2026"
     ]):
 
-        resultado = cadastrar_projeto()
+        resultado = await cadastrar_projeto()
 
     assert resultado == {
         "codigo": "001",
@@ -39,43 +58,28 @@ def test_cadastrar_projeto():
     }
 
 
-def test_buscar_projeto():
+@pytest.mark.asyncio
+async def test_buscar_projeto(projeto_teste):
 
-    projetos.clear()
-
-    projetos.append({
-        "codigo": "001",
-        "nome": "Projeto Teste",
-        "cliente": "Cliente Teste",
-        "status": "Em Cotação",
-        "data": "20/09/2026"
-    })
+    projetos.append(projeto_teste)
 
     with patch("builtins.input", return_value="001"):
 
-        resultado = buscar_projeto()
+        resultado = await buscar_projeto()
 
-    assert resultado["codigo"] == "001"
-    assert resultado["nome"] == "Projeto Teste"
+    assert resultado == projeto_teste
 
 
-def test_alterar_status():
+@pytest.mark.asyncio
+async def test_alterar_status(projeto_teste):
 
-    projetos.clear()
-
-    projetos.append({
-        "codigo": "001",
-        "nome": "Projeto Teste",
-        "cliente": "Cliente Teste",
-        "status": "Em Cotação",
-        "data": "20/09/2026"
-    })
+    projetos.append(projeto_teste)
 
     with patch("builtins.input", side_effect=[
         "001",
         "Nomeado"
     ]):
 
-        resultado = alterar_status()
+        resultado = await alterar_status()
 
     assert resultado["status"] == "Nomeado"
