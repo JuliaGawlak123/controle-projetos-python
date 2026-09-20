@@ -19,8 +19,7 @@ def projeto_teste():
     projetos.clear()
 
 
-@pytest.mark.asyncio
-async def test_exibir_menu(capsys):
+def test_exibir_menu(capsys):
 
     exibir_menu()
 
@@ -32,7 +31,6 @@ async def test_exibir_menu(capsys):
     assert "3 - Buscar projeto" in captured.out
     assert "4 - Alterar status" in captured.out
     assert "0 - Sair" in captured.out
-
 
 @pytest.mark.asyncio
 async def test_cadastrar_projeto():
